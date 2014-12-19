@@ -10,7 +10,7 @@ a2dissite 000-default
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 curl -L https://get.rvm.io | bash -s stable --ruby
-source /usr/local/rvm/scripts/rvm
+. /usr/local/rvm/scripts/rvm
 rvm get stable --autolibs=enable
 rvm --default use ruby-2.1.5
 
