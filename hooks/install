@@ -22,6 +22,8 @@ gem install nokogiri
 gem install rails -v 3.2.13
 gem install bundler
 
+mkdir -p /srv/www/htdocs
+
 curl -vv -L "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" > /tmp/redmine.tar.gz
 tar -C /srv/www/htdocs --strip-components=1 -zxf /tmp/redmine.tar.gz
 
