@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/bash
 
 # Boiler plate code to print context of this script
 juju-log $JUJU_REMOTE_UNIT modified its settings
@@ -7,10 +7,12 @@ relation-get
 juju-log Relation members:
 relation-list
 
-. inc/common
 
 
 # Relation properties
+
+sleep 120
+
 
 database=`relation-get database`
 user=`relation-get user`
@@ -41,6 +43,8 @@ EOF
 
 
 cd /srv/www/htdocs
+
+source /usr/local/rvm/scripts/rvm
 
 rake generate_secret_token
 RAILS_ENV=production rake db:migrate
