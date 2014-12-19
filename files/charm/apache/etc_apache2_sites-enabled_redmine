@@ -19,7 +19,7 @@ Listen *:8080
    Options Indexes FollowSymLinks
    PassengerResolveSymlinksInDocumentRoot on
    Order allow,deny
-   allow from all
+   Allow from all
    RailsEnv production
 
  </Directory>

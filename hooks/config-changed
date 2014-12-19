@@ -3,10 +3,21 @@
 . inc/common
 
 a2enmod actions rewrite alias headers
+rm -f /etc/apache2/sites-available/*
 
 juju-log "Installing Apache redmine config..."
 install -o root -g root -m 0644 files/charm/apache/etc_apache2_sites-enabled_redmine /etc/apache2/sites-available/redmine.conf
 a2ensite redmine
+
+cat <<EOF >> /srv/www/htdocs/config/configuration.yml
+production:
+  delivery_method: :smtp
+  smtp_settings:
+    address: 127.0.0.1
+    port: 25
+    domain: your-domain.com
+    authentication: :none
+EOF
 
 juju-log "Restarting Services ..."
 hooks/restart
