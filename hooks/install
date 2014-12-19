@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/bash
 
 apt-get -y install --no-install-suggests --no-install-recommends  apache2 pwgen exim4-daemon-light libapache2-mod-passenger
 
@@ -10,7 +10,7 @@ a2dissite 000-default
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 curl -L https://get.rvm.io | bash -s stable --ruby
-. /usr/local/rvm/scripts/rvm
+source /usr/local/rvm/scripts/rvm
 rvm get stable --autolibs=enable
 rvm --default use ruby-2.1.5
 
