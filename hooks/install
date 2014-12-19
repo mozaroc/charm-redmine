@@ -21,6 +21,7 @@ rvm gemset use global
 gem install nokogiri
 gem install rails -v 3.2.13
 gem install bundler
+gem install mysql2
 
 mkdir -p /srv/www/htdocs
 
