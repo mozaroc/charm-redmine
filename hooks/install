@@ -8,22 +8,12 @@ update-exim4.conf
 
 a2dissite 000-default
 
-gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
-curl -L https://get.rvm.io | bash -s stable --ruby
-source /usr/local/rvm/scripts/rvm
-rvm get stable --autolibs=enable
-rvm --default use ruby-2.1.5
-
-apt-get  -y install nodejs
-
-rvm gemset use global
+apt-get  -y install ruby ruby-dev nodejs
 
 gem install nokogiri
 gem install rails -v 3.2.13
 gem install bundler
 gem install passenger
-apt-get -y install ruby-dev
-
 gem install mysql2
 
 mkdir -p /srv/www/htdocs

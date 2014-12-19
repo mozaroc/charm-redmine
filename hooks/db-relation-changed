@@ -42,7 +42,6 @@ EOF
 
 cd /srv/www/htdocs
 
-source /usr/local/rvm/scripts/rvm
 
 rake generate_secret_token
 RAILS_ENV=production rake db:migrate
