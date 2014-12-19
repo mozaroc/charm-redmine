@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get -y install --no-install-suggests --no-install-recommends  apache2 pwgen exim4-daemon-light libapache2-mod-passenger
+apt-get -y install --no-install-suggests --no-install-recommends  apache2 pwgen exim4-daemon-light libapache2-mod-passenger mysql-client build-essential libmysqlclient-dev
 
 sed -i "s|dc_eximconfig_configtype='local'|dc_eximconfig_configtype='internet'|g" /etc/exim4/update-exim4.conf.conf
 
@@ -21,6 +21,9 @@ rvm gemset use global
 gem install nokogiri
 gem install rails -v 3.2.13
 gem install bundler
+
+apt-get -y install ruby-dev
+
 gem install mysql2
 
 mkdir -p /srv/www/htdocs
