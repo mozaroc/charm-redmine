@@ -1,0 +1,36 @@
+apt-get -y install --no-install-suggests --no-install-recommends  apache2 pwgen exim4-daemon-light libapache2-mod-passenger
+
+sed -i "s|dc_eximconfig_configtype='local'|dc_eximconfig_configtype='internet'|g" /etc/exim4/update-exim4.conf.conf
+
+update-exim4.conf
+
+a2dissite 000-default
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+curl -L https://get.rvm.io | bash -s stable --ruby
+source /usr/local/rvm/scripts/rvm
+rvm get stable --autolibs=enable
+rvm --default use ruby-2.1.5
+
+apt-get  -y install nodejs
+
+rvm gemset use global
+
+gem install nokogiri
+gem install rails -v 3.2.13
+gem install bundler
+
+curl -vv -L "http://www.redmine.org/releases/redmine-2.6.0.tar.gz" > /tmp/redmine.tar.gz
+tar -C /srv/www/htdocs --strip-components=1 -zxf /tmp/redmine.tar.gz
+
+cd /srv/www/htdocs/
+
+bundle install --without development test postgresql sqlite rmagick
+
+touch /srv/www/htdocs/config/database.yml
+
+mkdir tmp tmp/pdf public/plugin_assets
+
+sudo chown -R redmine:redmine files log tmp public/plugin_assets
+sudo chmod -R 755 files log tmp public/plugin_assets
+

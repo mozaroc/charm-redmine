@@ -1,0 +1,3 @@
+#!/bin/sh -ex
+
+service apache2 restart

@@ -1,0 +1,14 @@
+name: Redmine
+summary: "Redmine"
+maintainer: Ivan Razin <mozaroc@gmail.com>
+description: |
+            Installing rubi,rail,rvm and redmine
+categories: ["applications"]
+requires:
+  mail:
+    interface: smtp
+  db:
+    interface: mysql
+provides:
+  website:
+    interface: http

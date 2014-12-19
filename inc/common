@@ -1,0 +1,8 @@
+#!/bin/sh -ex
+
+hostname=`unit-get public-address`
+private_name=`hostname --all-fqdns | cut -f 1 -d ' '`
+
+install_path="/srv/www/htdocs"
+
+

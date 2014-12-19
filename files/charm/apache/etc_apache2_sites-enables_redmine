@@ -1,0 +1,36 @@
+Listen *:8080
+
+<VirtualHost *:8080>
+  ServerName localhost
+  ServerAlias *
+  ServerAdmin webmaster@localhost
+  
+  UseCanonicalName Off
+
+  DocumentRoot /srv/www/htdocs/public
+  <Directory /srv/www/htdocs/public>
+    Options Indexes ExecCGI FollowSymLinks
+    AllowOverride All
+  </Directory>
+
+  ErrorLog ${APACHE_LOG_DIR}/redmine-error.log
+
+  LogLevel warn
+  CustomLog ${APACHE_LOG_DIR}/redmine-access.log combined
+</VirtualHost>
+
+
+
+<VirtualHost *:80>
+  ServerName www.yourhost.com
+  DocumentRoot /srv/www/htdocs
+  <Directory /srv/www/htdocs>
+    AllowOverride all
+    Options -MultiViews
+  </Directory>
+
+  RailsBaseURI /redmine
+  <Directory /srv/www/htdocs/redmine>
+    Options -MultiViews
+  </Directory>                                                                                     
+</VirtualHost>
