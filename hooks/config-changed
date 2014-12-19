@@ -1,0 +1,12 @@
+#!/bin/sh -ex
+
+. inc/common
+
+a2enmod actions rewrite alias headers php5
+
+juju-log "Installing Apache redmine config..."
+install -o root -g root -m 0644 files/charm/apache/etc_apache2_sites-enabled_redmine /etc/apache2/sites-available/redmine.conf
+a2ensite joomla
+
+juju-log "Restarting Services ..."
+hooks/restart

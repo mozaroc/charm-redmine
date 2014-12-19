@@ -21,7 +21,7 @@ rvm gemset use global
 gem install nokogiri
 gem install rails -v 3.2.13
 gem install bundler
-
+gem install passenger
 apt-get -y install ruby-dev
 
 gem install mysql2

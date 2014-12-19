@@ -11,8 +11,6 @@ relation-list
 
 # Relation properties
 
-sleep 120
-
 
 database=`relation-get database`
 user=`relation-get user`
