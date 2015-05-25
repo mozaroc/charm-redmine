@@ -8,8 +8,6 @@ sed -i "s|dc_eximconfig_configtype='local'|dc_eximconfig_configtype='internet'|g
 
 update-exim4.conf
 
-rm -fr /etc/apache2/ports.conf
-
 a2dissite 000-default
 
 apt-get  -y install ruby ruby-dev nodejs
