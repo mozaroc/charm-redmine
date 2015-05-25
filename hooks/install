@@ -1,10 +1,14 @@
 #!/bin/bash
 
+. inc/common
+
 apt-get -y install --no-install-suggests --no-install-recommends  apache2 pwgen exim4-daemon-light libapache2-mod-passenger mysql-client build-essential libmysqlclient-dev
 
 sed -i "s|dc_eximconfig_configtype='local'|dc_eximconfig_configtype='internet'|g" /etc/exim4/update-exim4.conf.conf
 
 update-exim4.conf
+
+rm -fr /etc/apache2/ports.conf
 
 a2dissite 000-default
 
@@ -30,17 +34,5 @@ touch /srv/www/htdocs/config/database.yml
 mkdir tmp tmp/pdf public/plugin_assets
 
 install_path="/srv/www/htdocs/"
-
-set_permissions() {
-        if [ -d $install_path ]; then
-            chown -R www-data:www-data $install_path
-            chmod 750 $install_path
-            find $install_path -type f -exec chmod 644 {} \;
-            find $install_path -type d -exec chmod 755 {} \;
-        else
-            juju-log "Drupal is not installed at $install_path"
-            exit 1
-        fi
-}
 
 set_permissions

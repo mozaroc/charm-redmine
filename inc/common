@@ -5,4 +5,14 @@ private_name=`hostname --all-fqdns | cut -f 1 -d ' '`
 
 install_path="/srv/www/htdocs"
 
-
+set_permissions() {
+        if [ -d $install_path ]; then
+            chown -R www-data:www-data $install_path
+            chmod 750 $install_path
+            find $install_path -type f -exec chmod 0666 {} \;
+            find $install_path -type d -exec chmod 755 {} \;
+        else
+            juju-log "Drupal is not installed at $install_path"
+            exit 1
+        fi
+}

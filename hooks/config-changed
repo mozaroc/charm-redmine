@@ -21,3 +21,5 @@ EOF
 
 juju-log "Restarting Services ..."
 hooks/restart
+
+set_permissions

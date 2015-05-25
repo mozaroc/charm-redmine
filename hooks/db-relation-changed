@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. inc/common
+
 # Boiler plate code to print context of this script
 juju-log $JUJU_REMOTE_UNIT modified its settings
 juju-log Relation settings:
@@ -32,7 +34,7 @@ cat <<EOF >> /srv/www/htdocs/config/database.yml
 production:
   adapter: mysql2
   database: $database
-  host: $host
+  host: 127.0.0.1
   username: $user
   password: $password
   encoding: utf8
@@ -51,6 +53,9 @@ RAILS_ENV=production REDMINE_LANG=ru rake redmine:load_default_data
 #chown www-data:www-data $config_file_path
 #chmod 0640 $config_file_path
 
+set_permissions
+
 juju-log "Opening port 80"
 open-port 80/tcp
 open-port 443/tcp
+
