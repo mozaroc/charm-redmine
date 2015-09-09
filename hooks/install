@@ -16,17 +16,28 @@ gem install nokogiri
 gem install rails -v 4.2
 gem install bundler
 gem install passenger
-gem install mysql2
 
 mkdir -p /srv/www/htdocs
 
 curl -vv -L "http://www.redmine.org/releases/redmine-3.1.0.tar.gz" > /tmp/redmine.tar.gz
 tar -C /srv/www/htdocs --strip-components=1 -zxf /tmp/redmine.tar.gz
 
+cat <<EOF >> /srv/www/htdocs/config/database.yml
+production:
+  adapter: mysql2
+  database: $database
+  host: 127.0.0.1
+  username: $user
+  password: $password
+  encoding: utf8
+EOF
+
+
 cd /srv/www/htdocs/
 
 bundle install --without development test postgresql sqlite rmagick
 
+rm -rf /srv/www/htdocs/config/database.yml
 touch /srv/www/htdocs/config/database.yml
 
 mkdir tmp tmp/pdf public/plugin_assets
